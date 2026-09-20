@@ -4,7 +4,8 @@ import { BrowserRouter, Navigate, NavLink, Outlet, Route, Routes, useLocation, u
 import { CalendarDays, Check, ChevronLeft, ChevronRight, CirclePlus, Clock3, Flag, LayoutDashboard, LogOut, Menu, MoreHorizontal, NotebookPen, Star, Target, X } from 'lucide-react'
 import './styles.css'
 
-const API = import.meta.env.VITE_API_URL || 'http://localhost:5000/api'
+const configuredApi = (import.meta.env.VITE_API_URL || 'http://localhost:5000/api').replace(/\/$/, '')
+const API = configuredApi.endsWith('/api') ? configuredApi : `${configuredApi}/api`
 const sampleBlocks = [
   { id: '1', time: '06:30', end: '07:00', title: 'Morning reset', color: 'mint' },
   { id: '2', time: '07:30', end: '09:30', title: 'Deep work', color: 'coral' },
