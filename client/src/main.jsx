@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Navigate, NavLink, Outlet, Route, Routes, useLocation, useNavigate } from 'react-router-dom'
 import { CalendarDays, Check, ChevronLeft, ChevronRight, CirclePlus, Clock3, Flag, LayoutDashboard, LogOut, Menu, MoreHorizontal, NotebookPen, Star, Target, X } from 'lucide-react'
 import './styles.css'
+import EmailAuthPage from './EmailAuthPage'
 
 const configuredApi = (import.meta.env.VITE_API_URL || 'http://localhost:5000/api').replace(/\/$/, '')
 const API = configuredApi.endsWith('/api') ? configuredApi : `${configuredApi}/api`
@@ -19,7 +20,7 @@ async function request(path, options = {}) { const response = await fetch(`${API
 function todayLabel(date = new Date()) { return date.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' }) }
 function formatShort(date) { return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) }
 
-function App() { return <Routes><Route path="/login" element={<AuthPage />} /><Route element={<ProtectedLayout />}><Route path="/" element={<Navigate to="/dashboard" replace />} /><Route path="/dashboard" element={<Dashboard />} /><Route path="/journal" element={<Journal />} /><Route path="/timetable" element={<Timetable />} /><Route path="/goals" element={<Goals />} /></Route><Route path="*" element={<Navigate to="/dashboard" replace />} /></Routes> }
+function App() { return <Routes><Route path="/login" element={<EmailAuthPage />} /><Route element={<ProtectedLayout />}><Route path="/" element={<Navigate to="/dashboard" replace />} /><Route path="/dashboard" element={<Dashboard />} /><Route path="/journal" element={<Journal />} /><Route path="/timetable" element={<Timetable />} /><Route path="/goals" element={<Goals />} /></Route><Route path="*" element={<Navigate to="/dashboard" replace />} /></Routes> }
 
 function ProtectedLayout() {
   const [user, setUser] = useState(() => JSON.parse(localStorage.getItem('dayline_user') || 'null'))

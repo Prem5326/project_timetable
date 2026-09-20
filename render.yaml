@@ -12,3 +12,19 @@ services:
         generateValue: true
       - key: CLIENT_URL
         sync: false
+      - key: API_PUBLIC_URL
+        sync: false
+      - key: MAIL_HOST
+        sync: false
+      - key: MAIL_PORT
+        value: "465"
+      - key: MAIL_SECURE
+        value: "true"
+      - key: MAIL_USER
+        sync: false
+      - key: MAIL_PASSWORD
+        sync: false
+      - key: MAIL_FROM
+        sync: false
+      - key: REMINDER_CRON
+        value: "0 8 * * *"

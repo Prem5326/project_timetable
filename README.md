@@ -32,5 +32,7 @@ Do not commit `server/.env`. It is ignored by the root `.gitignore`.
 ### Render API
 Create a Web Service pointing at this repository. The included `render.yaml` uses **Root Directory** `server`, **Build Command** `npm install`, and **Start Command** `npm start`. Add `MONGODB_URI` and set `CLIENT_URL` to your Vercel URL after the frontend is deployed. Render generates `JWT_SECRET` automatically from the blueprint.
 
+Email verification and reminders use SMTP. Add `API_PUBLIC_URL` as the Render API URL ending in `/api`, plus `MAIL_HOST`, `MAIL_PORT`, `MAIL_SECURE`, `MAIL_USER`, `MAIL_PASSWORD`, and `MAIL_FROM`. For Gmail, use a Google App Password, not your normal Gmail password. `REMINDER_CRON` defaults to `0 8 * * *` UTC and sends starred entries scheduled for the current date.
+
 ### Vercel frontend
 Import the repository into Vercel. The root `vercel.json` builds `client` and serves `client/dist`. Set `VITE_API_URL` to the Render API URL ending in `/api`.
